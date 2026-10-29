@@ -1,0 +1,6 @@
+{
+  "name": "WorkForce Health SA",
+  "description": "WORKFORCE HEALTH SA Occupational Hygiene Digital Platform for inspections, compliance, and field reporting",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

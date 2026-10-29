@@ -1,0 +1,1097 @@
+# GOOGLE AI STUDIO — MASTER BUILD INSTRUCTION
+
+## WORKFORCE HEALTH SA Occupational Hygiene Digital Platform
+
+**Project owner:** WORKFORCE HEALTH SA\
+**Development partner:** GeekForge\
+**Platform:** Android mobile application + secure cloud backend + web-based management portal\
+**Primary use:** Occupational hygiene inspections, assessments, field data collection, compliance documentation and reporting\
+**Initial module:** Monthly Ablution Facilities Checklist — Male\
+**Development approach:** Modular, user-centred, offline-first, cloud-connected and production-oriented
+
+---
+
+# 1. YOUR ROLE AND DEVELOPMENT OBJECTIVE
+
+Act as a senior full-stack software architect, Android developer, cloud backend engineer, database architect, UI/UX designer and occupational hygiene workflow specialist.
+
+Build a professional, functional digital platform called **WORKFORCE HEALTH SA** to replace paper-based occupational hygiene forms and inspection checklists.
+
+Use the attached monthly male ablution facilities checklist images as the authoritative source for the initial digital inspection module. Preserve its questions, section headings, numbering, Yes/No compliance fields, remarks, chemical registers, procedure documentation and supporting evidence requirements.
+
+The supplied checklist is the first module of a larger occupational hygiene system. Build a reusable architecture that allows additional assessment modules to be implemented without redesigning the entire application.
+
+Do not build only a visual prototype. Implement functional navigation, persistent storage, authentication, data validation, API integration, synchronisation, file uploads, workflow permissions and reporting.
+
+Where a service requires credentials, create the integration interface and configuration placeholders, document the setup requirements, and never pretend an external service is connected when it is not.
+
+# 2. PLATFORM ARCHITECTURE
+
+Build three integrated components sharing one authoritative cloud database.
+
+## A. Android mobile application
+
+Recommended stack:
+
+- Kotlin
+- Jetpack Compose
+- Material 3
+- Room local database
+- Android WorkManager for background synchronisation
+- Camera and document/photo selection
+- GPS location capture, subject to permissions
+- Digital signature capture
+- Secure API communication
+
+The application must support Android phones and tablets, including devices used in mining environments with poor or intermittent connectivity.
+
+## B. Secure cloud backend
+
+Recommended stack:
+
+- Supabase with PostgreSQL, Auth and private object storage; or an equivalent production-grade backend.
+- REST APIs or an equivalent typed API layer.
+- Database migrations, access policies, audit logging and background jobs.
+- Server-side validation and role-based authorisation.
+
+Use a single authoritative database for customers, sites, users, assessments, photographs, signatures, equipment, documents, chemical records, remedial actions and reports.
+
+Never place privileged backend keys, service-role keys, database passwords or other secrets in the Android application or public web frontend.
+
+## C. Web-based management portal
+
+Recommended stack:
+
+- Next.js
+- React
+- TypeScript
+- Responsive desktop and mobile layouts
+- Secure backend API integration
+- Role-protected administrative screens
+
+The portal must provide full management functionality, not merely display a dashboard. Authorised users must be able to maintain customer records, assign assessors, manage sites, configure checklist templates, review assessments, upload laboratory results, approve reports and export documentation.
+
+All three components must use the same records, permissions, workflow statuses and audit history.
+
+# 3. BRANDING AND USER EXPERIENCE
+
+Use WORKFORCE HEALTH SA branding consistently throughout the application, web portal, splash screen, login screen, reports and notifications.
+
+Design direction:
+
+- Professional black, white and red branding.
+- Premium glassmorphism dashboard elements used selectively.
+- Clean black or Dark-neutral form surfaces for legibility.
+- Light navigation elements where appropriate.
+- Red accents for primary actions, critical findings and important alerts.
+- Green for confirmed positive compliance, amber for review and red for negative or critical findings.
+- Large, glove-friendly touch targets.
+- Clear labels, accessible contrast and readable typography.
+- Minimal unnecessary animations on field inspection screens.
+
+Create an animated splash screen featuring the official WORKFORCE HEALTH SA logo. Use a supplied brand asset if available; otherwise create a temporary logo placeholder that can be replaced later.
+
+Display the application name as **WORKFORCE HEALTH SA** throughout. Do not use the retired name SiteHygiene.
+
+The field application should prioritise speed, clarity and reliable data capture over decorative effects.
+
+Customer Account
+Add new / Edit/ Modify / Delete 
+Core onboarding
+- Customer profile
+- Upload Customer Logo : Upload Image File 
+- Site profile
+- Parent company information
+- Legal entity details
+- Mining authorisations
+- Operational information
+- GPS location
+- Document references
+Legal compliance
+- Legal Appointments (Section 2)
+- Other Legal & Operational Appointments (Pages 29–30)
+- Legal Authorisations (Pages 31–36)
+- Appointment references
+- Employer representative
+- Mine manager
+- Occupational hygienist
+- Medical practitioner
+- Safety representatives
+- Competent persons
+Operational registers
+- HEG Register
+- Activity Areas Register
+- Workroom Stressor Register
+- Chemical Register
+- Respirator Zone Register
+- Noise Register
+- Heat Source Register
+- Cold Source Register
+- Vibration Register
+- Labour Complement Register
+- Equipment Register
+- Mechanisation Register
+- Ventilation Register
+- MCOP Register
+- Unique Features Register
+Emergency management
+- Emergency Contacts
+- Emergency Plans
+- Firefighting references
+- First Aid references
+- Route map references
+- Traffic management references
+Supporting documentation
+- CIPC certificate
+- SARS VAT
+- Mining Right
+- Water Licence
+- Control Group CIPC
+- Control Group VAT
+More Info:
+- Mining Details
+- HEGs Source
+- Stressors Source
+- HCS Sources
+- Respirator Source
+- Noise Source
+- Trackless Inventory
+- First Aiders
+- Fire Fighters
+- Airborne Statistics
+- Noise Statistics
+Assessor Profile 
+Assessor Name & Surname
+Address 
+Contact Details
+Mobile Number
+Mobile Number Work 
+WhatsApp Number
+Emergency Contact person Name & Phone Number
+Upload Profile Photo
+Email Address
+Assessor Job Description
+Assessor Role
+Dashboard cards for Assessor: 
+- Start New Assessment
+- Continue Draft Assessment
+- Today's Site Visits
+- My Completed Assessments
+- Outstanding Samples
+- Follow-up Actions
+- Reports & Documents
+The dashboard should also show the number of assessments that are:
+- Not started.
+- In progress.
+- Awaiting review.
+- Completed.
+- Awaiting laboratory results or follow-up.
+Assessor Tasks and Calendar
+- Assigned Tasks
+- Assigned Assessment's
+- Assessments Progress Stats
+Implement Openstreet Maps SDK for trips and locations 
+- Start Trips
+- End Trips
+- GEO Locations
+- Live Location Tracking
+- GPS Coordinates
+For Assesments Fields should include :
+- Customer Name
+- Mine name and location.
+- DME mine code.
+- Date of field visit.
+- Mine Manager.
+- Mine Manager's contact details.
+- Site Occupational Hygienist.
+- Occupational Medical Practitioner, where applicable.
+- Assessor's name.
+- Assessment type.
+- Assessment document reference.
+- Previous site visit date.
+- Remedial actions from the previous visit.
+- Special instructions from the appointed Occupational Hygienist.
+
+The app should also allow additional sites to be added in the future.
+Environmental conditions
+Several of the supplied worksheets contain a section for environmental conditions during the shift.
+The app should provide three measurement periods:
+Start of shift
+- Actual measurement time.
+- Wet-bulb temperature (°C).
+- Dry-bulb temperature (°C).
+- Globe temperature (°C).
+- WBGT index (°C).
+- Relative humidity (%).
+- Wind speed (m/s).
+- General environmental conditions.
+Middle of shift
+
+The same fields, with a separate measurement time.
+
+End of shift
+
+The same fields, with a separate measurement time.
+
+Additional fields:
+- Equipment used.
+- Instrument model.
+- Serial number.
+- Comments.
+The supplied worksheets identify equipment such as a WBGT Logger model AZ 87786 and a Kestrell pocket weather tracker model 4000. These should be configurable equipment records, not hardcoded requirements for every assessment.The app must distinguish between a reading that has not been taken and a reading of zero.
+
+Company Setup 
+add in the Following :
+Document Numbers Prefix
+Upload Templates
+Document Templates
+Create a Assessor Task & Calendar system to Assign:
+- Booked Assessment's
+create what will be needed 
+
+# 4. USER AUTHENTICATION AND ACCESS CONTROL
+
+Implement secure authentication and role-based access control.
+
+Required roles:
+
+**1. Occupational Hygiene Assistant / Field Assessor**
+
+- View assigned customers and sites.
+- Start and continue inspections.
+- Complete checklist questions.
+- Record observations and remarks.
+- Capture photographs, GPS evidence and signatures.
+- Save offline drafts.
+- Submit completed fieldwork for review.
+- View permitted assessment history.
+
+**2. Occupational Hygienist**
+
+- Review submitted assessments.
+- Request corrections and return records to assessors.
+- Evaluate findings and recorded measurements.
+- Enter professional interpretations and recommendations.
+- Approve or reject assessments.
+- Authorise final reports within their assigned permissions.
+
+**3. Mine Management / Client Representative**
+
+- View authorised site information and approved reports.
+- View assigned remedial actions and their progress.
+- Acknowledge findings where required.
+- Access permitted compliance summaries and supporting documents.
+
+**4. System Administrator**
+
+- Manage users, roles, permissions and assignments.
+- Create and maintain customers and sites.
+- Manage checklist templates and versions.
+- Maintain equipment, chemicals and document registers.
+- Configure reference criteria and report templates.
+- Review audit logs and synchronisation failures.
+
+Do not rely on hidden buttons or frontend-only role checks. Enforce access control on the backend and database.
+
+# 5. CUSTOMER AND SITE MANAGEMENT
+
+Create reusable customer and site registers.
+
+Assessors must be able to select an authorised company and then select an assigned site or facility from dropdowns or searchable lists. Do not require users to retype known customer information for every inspection.
+
+Each customer may have multiple sites. Each site may have multiple facilities, inspections, contacts and historical reports.
+
+Capture the following information where applicable:
+
+- Customer/company name.
+- Site or mine name.
+- Facility/building/location.
+- Farm or property description.
+- Province and geographical location.
+- Mine or DME code, where applicable.
+- Mine Manager and contact details.
+- Site Occupational Hygienist.
+- Occupational Medical Practitioner, where applicable.
+- Assigned assessor.
+- Inspection type and document reference.
+- Assessment date and time.
+- Previous visit date.
+- Previous remedial actions.
+- Special instructions from the Occupational Hygienist.
+
+Allow authorised users to create or amend customer and site records.
+
+Use the initial reference site, where required:
+
+- Customer: Letaba Crushers (Pty) Ltd.
+- Property: Farm Tarentaalrant 24LT.
+- Location: Tzaneen, Limpopo Province.
+- Mine code: 14466.
+
+Treat these as configurable example records, not hard-coded values. Do not assume that every inspection takes place at this customer.
+
+# 6. MOBILE APP NAVIGATION
+
+Create the following primary screens:
+
+1. Splash Screen.
+2. Login / Authentication.
+3. Dashboard.
+4. Customer Selection.
+5. Site and Facility Selection.
+6. New Assessment.
+7. Continue Draft.
+8. My Assessments.
+9. Site Visits.
+10. Assessment Checklist.
+11. Photograph and Evidence Capture.
+12. Signature Capture.
+13. Remedial Actions.
+14. Chemicals and Safety Data Sheets.
+15. Equipment Register.
+16. Samples and Laboratory Results.
+17. Reports and Document Preview.
+18. Notifications.
+19. User Profile and Settings.
+
+Dashboard cards should include:
+
+- Start New Assessment.
+- Continue Draft.
+- Today's Site Visits.
+- In Progress.
+- Awaiting Review.
+- Completed Assessments.
+- Outstanding Remedial Actions.
+- Pending Laboratory Results.
+- Reports Awaiting Approval.
+
+Only show actual records and calculated counts. Do not display fabricated statistics or sample compliance results as real operational data.
+
+# 7. INITIAL MODULE: MONTHLY ABLUTION FACILITIES CHECKLIST&#x20;
+
+Implement the supplied checklist as a complete, interactive digital form.
+
+The form title must be: **Description and / or location, Choose from Dropdown box : Monthly ablution facilities checklist *Male,&#x20;*&#x4D;onthly ablution facilities checklist *Female,&#x20;*&#x4D;onthly toilet and basin checklist *Male / Female***
+
+**Create a mobile friendly version like a Wizard or Questionnaire after each checklist go to next or back buttons &#x20;**
+
+Use a structured layout with the following columns or equivalent mobile components:
+
+- Number.
+- Compliance question.
+- Yes.
+- No.
+- Remarks.
+
+Each question must have a clearly selectable compliance response and a remarks field.
+
+For questions where the original form contains a Yes/No compliance response, preserve those options. A third internal state, **Not Assessed**, may be used to identify unanswered items, but it must not be silently converted into Yes or No or presented as an original source option.
+
+If a question is not applicable, provide a separately controlled Not Applicable option only when the configured template permits it. Record the reason where required.
+
+Each item should support: GEO locate coordinates&#x20;
+
+- Compliance response.
+- Remarks and observations.
+- Photograph attachment.
+- Timestamped evidence.
+- Corrective action, where required.
+- Assessor identity.
+- Record creation and modification history.
+
+Organise the checklist into the following sections.
+
+## SECTION A — BASINS
+
+Question 1. Are the basins clean?
+
+Question 2. Are the soap dispensers filled with liquid soap?
+
+Question 3. Do both water taps close properly?
+
+Question 4. Is there a sign/poster above each basin illustrating the correct way to wash your hands properly?
+
+Question 5. Are there any signs of moulds / yeast / mildew around or inside the basin?
+
+## SECTION B — SHOWERS
+
+Question 1. Are the showers clean?
+
+Question 2. Do both water taps close properly?
+
+Question 3. Are proper showerheads fitted on all the showers?
+
+Question 4. Are the shower curtains / doors in good condition and close properly, providing the necessary privacy?
+
+Question 5. Are there any signs of moulds / yeast / mildew on the shower floors and / or walls?
+
+## SECTION C — TOILETS
+
+Question 1. Are the toilets clean and the floors dry?
+
+Question 2. Are all toilet water bowls fitted with lids?
+
+Question 3. Are all toilets fitted with sitting seats?
+
+Question 4. Do all the toilets flush properly?
+
+Question 5. Is there enough toilet paper in all the toilets?
+
+Question 6. Do all the toilet doors close properly?
+
+Question 7. Are there any signs of moulds / yeast / mildew?
+
+## SECTION D — URINALS
+
+Question 1. Are all urinals clean?
+
+Question 2. Do all the urinals flush properly?
+
+Question 3. Are the floors around the urinals clean and dry?
+
+Question 4. Are there any bad odours in the urinal area?
+
+Question 5. Are there any signs of moulds / yeast / mildew?
+
+## SECTION E — LOCKERS
+
+Question 1. Are all employees issued with their own lockers?
+
+Question 2. Are all lockers marked with their respective owner's names and / or numbers?
+
+Question 3. Do the doors of the lockers close properly?
+
+Question 4. Can the doors of the lockers lock?
+
+Question 5. Is the locker area clean?
+
+## SECTION F — GENERAL
+
+Question 1. Is there a sign on the change house door indicating the gender?
+
+Question 2. Are there signs / posters above every basin illustrating the correct way to wash your hands properly?
+
+Question 3. Are there signs / posters at the showers educating employees about the dangers of fungal infections?
+
+Question 4. Is there a rubbish bin inside the change house?
+
+Question 5. Is there a bin liner in the rubbish bin?
+
+Question 6. Is the change house deeply sanitised — state frequency under remarks column?
+
+Question 7. Has a certificate been issued by the service provider who did the sanitising?
+
+Question 8. Is there a cleaning schedule and register in the change house — state frequency under remarks column?
+
+Question 9. Is the register signed off after cleaning and up to date?
+
+Question 10. Is there a complaint / complement book in the change house?
+
+Question 11. Is the change house clean and tidy?
+
+Question 12. Is personal hygiene in the change house up to standard?
+
+Question 13. Do the change house doors close automatically and properly?
+
+Question 14. Are there any bad odours in the change house?
+
+Question 15. Are employees trained on the importance of personal hygiene at work — state frequency under remarks column?
+
+Question 16. Has a ventilation assessment been conducted in the facility — reference date and report number in the remarks column?
+
+Question 17. Has an illumination assessment been conducted in the facility — reference date and report number in the remarks column?
+
+Question 18. Review all complaints / complements in the complaint book and log in the remarks column — if none, state this fact.
+
+Question 19. List the approximate total of employees using the facility in the remarks column.
+
+Question 20. Provide full details of the deep-cleaning methods (procedure) and chemicals (with safety data sheets = SDS) used by the person / organisation conducting deep cleaning — log in the remarks column.
+
+For Question 20, provide the following additional fields:
+
+- Copy of procedure obtained: Yes / No.
+- Copy of procedure returned: Yes / No.
+- Chemical name register.
+- SDS returned for each chemical: Yes / No.
+- Additional remarks and evidence attachments.
+
+Include a repeatable chemical table with sufficient rows for multiple products. Each chemical record must be linked to its relevant SDS document when available.
+
+Question 21. Are windows in the facility of the frosted type to protect privacy in the facility — give full details in the remarks column.
+
+Question 22. Obtain full list of chemicals used for daily / weekly / monthly cleaning, excluding deep cleaning, as well as copies of safety data sheets for these chemicals.
+
+For Question 22, provide:
+
+- Copy of procedure obtained: Yes / No.
+- Copy of procedure returned: Yes / No.
+- List of all chemicals used.
+- Chemical name.
+- SDS returned: Yes / No.
+- Remarks and document attachments.
+
+Keep the routine-cleaning chemical register separate from the deep-cleaning chemical register.
+
+Question 23. Are the facilities disabled person friendly?
+
+## SECTION G — OTHER
+
+Include the heading:
+
+**OTHER, PLEASE LIST BELOW**
+
+Provide a repeatable set of additional inspection items with:
+
+- Item number.
+- Custom compliance question.
+- Yes / No response.
+- Remarks.
+- Photograph attachment.
+- Corrective action, if necessary.
+
+Allow authorised users to configure the number of additional items.
+
+# 8. CHECKLIST VALIDATION AND COMPLETION
+
+Do not allow an assessment to be marked complete while required questions remain unanswered.
+
+Provide a progress indicator showing:
+
+- Total checklist items.
+- Answered items.
+- Unanswered items.
+- Items requiring remarks.
+- Items with photographic evidence.
+- Outstanding corrective actions.
+
+Flag a negative response for review where appropriate. Do not automatically classify every No response as a regulatory violation. The significance must be determined by the configured checklist logic and professional review.
+
+For any negative response requiring action, allow the assessor to create a remedial action with:
+
+- Finding description.
+- Related checklist question.
+- Photograph or supporting evidence.
+- Recommended corrective action.
+- Responsible person or department.
+- Target completion date.
+- Priority.
+- Current status.
+- Closure evidence.
+- Closure date.
+- Verification and approval history.
+
+Use explicit statuses such as Draft, In Progress, Submitted for Review, Returned for Correction, Approved and Archived. Keep the checklist's compliance responses separate from the assessment workflow status.
+
+# 9. OTHER OCCUPATIONAL HYGIENE MODULES
+
+Build the platform so that the following modules can be introduced through the same reusable assessment engine:
+
+1. Ablution Facilities.
+2. Artificial Illumination — Day / Night.
+3. Trackless Mobile Machine Illumination.
+4. Area and Source Noise.
+5. Potable Water — Part A.
+6. Potable Water — Part B.
+7. Thermal Stress.
+8. Fall-Out Dust.
+9. Personal Airborne Pollutants.
+10. Personal Noise.
+
+Each module must have its own configurable questions, fields, validation rules, equipment requirements, attachments, approval workflow and report template.
+
+Do not assume the male ablution checklist applies to every module or to the female change house. Maintain distinct checklist templates and versions for different facility types.
+
+Potable Water Part A and Part B must remain separate records until the authorised Occupational Hygienist approves the relevant workflow. Do not fabricate water results, laboratory findings, exposure measurements or compliance limits.
+
+For environmental assessments, support the applicable measurement periods and configured fields, including:
+
+- Wet-bulb temperature.
+- Dry-bulb temperature.
+- Globe temperature.
+- Wet Bulb Globe Temperature (WBGT).
+- Relative humidity.
+- Wind speed.
+- Equipment and model.
+- Serial number.
+- Measurement date and time.
+- Sampling or measurement location.
+- Assessor notes.
+
+Provide equipment selection from the shared register. Example equipment entries include a WBGT Logger AZ 87786 and Kestrel 4000, subject to confirmation of the actual equipment details.
+
+Clearly distinguish zero readings from missing, unavailable or not-measured readings.
+
+Do not hard-code unverified regulatory criteria. Store applicable limits and assessment criteria as configurable, version-controlled reference data requiring authorised verification.
+
+# 10. CLOUD DATABASE DESIGN
+
+Design a relational PostgreSQL database with suitable indexes, foreign keys, constraints and access policies.
+
+Create logical tables or equivalent entities for:
+
+- Organisations and tenants.
+- Users.
+- Roles and permissions.
+- Customer companies.
+- Sites.
+- Facilities and locations.
+- Customer contacts.
+- Assessor assignments.
+- Assessment types.
+- Checklist templates.
+- Checklist template versions.
+- Checklist sections.
+- Checklist questions.
+- Assessments.
+- Assessment answers.
+- Environmental readings.
+- Equipment.
+- Equipment calibration records.
+- Employees, where required.
+- Photographs and attachments.
+- Digital signatures.
+- Chemicals.
+- Safety Data Sheets.
+- Cleaning procedures.
+- Laboratory samples.
+- Laboratory results.
+- Remedial actions.
+- Action status history.
+- Reports.
+- Report versions.
+- Approvals and review comments.
+- Notifications.
+- Audit events.
+- Device synchronisation records.
+
+Each assessment must be linked to its customer, site, facility, template version, assessor, date and workflow status.
+
+Every important record must include appropriate metadata, such as:
+
+- Unique identifier.
+- Created by.
+- Created date and time.
+- Last modified by.
+- Last modified date and time.
+- Version or revision.
+- Relevant approval details.
+- Synchronisation status.
+
+Use soft deletion or archival where appropriate, with a controlled process for authorised permanent deletion.
+
+Never overwrite approved historical assessment records silently. Preserve their revision history and retain the original submitted evidence.
+
+# 11. OFFLINE-FIRST AND CLOUD SYNCHRONISATION
+
+Fieldwork must remain possible without internet connectivity.
+
+The Android application must:
+
+1. Download the assessor's authorised assignments and required reference data.
+2. Save draft assessments locally in Room.
+3. Save answers, remarks and attachment metadata locally.
+4. Retain photographs and signatures securely until synchronisation succeeds.
+5. Queue pending uploads and database changes.
+6. Retry failed synchronisation automatically when connectivity returns.
+7. Display clear Offline, Pending Sync, Syncing, Synced and Sync Failed states.
+8. Provide a manual retry option.
+9. Preserve user changes when a request fails.
+10. Detect conflicting edits and provide an auditable resolution process.
+
+Use stable UUIDs and idempotent server operations to prevent duplicate records.
+
+Do not delete local evidence until the server has confirmed that the upload and associated record changes were successfully committed.
+
+Define a conflict policy. For example, conflicting edits to submitted or approved assessments must not silently overwrite one another. Preserve both versions or require an authorised resolution.
+
+The web portal must show the latest successfully synchronised information and identify records that have not yet reached the cloud.
+
+# 12. PHOTOGRAPHS, GPS AND SIGNATURES
+
+Provide photo capture and upload for each applicable checklist question and assessment.
+
+Each photograph should store:
+
+- Assessment ID.
+- Checklist item ID, where applicable.
+- Customer and site references.
+- Capture timestamp.
+- Uploader identity.
+- Description or caption.
+- GPS coordinates, where permission is granted.
+- Upload and synchronisation status.
+
+Compress photographs appropriately for mobile uploads while retaining sufficient quality for inspection evidence.
+
+Provide an in-app signature pad for the assessor and other authorised signatories where required.
+
+Store signature records securely with the signer identity, role, timestamp and associated assessment or approval.
+
+Treat signatures as attributable electronic records, not automatically as proof of any particular legal status. Implement any required identity verification, consent and audit controls according to the client's requirements.
+
+Never fabricate a signature or silently reuse a signature from another assessment.
+
+# 13. WEB-BASED MANAGEMENT PORTAL
+
+Build a complete responsive portal with role-specific navigation.
+
+## Management dashboard
+
+Display real database-driven metrics for:
+
+- Total assessments.
+- Draft assessments.
+- Assessments awaiting review.
+- Approved assessments.
+- Outstanding remedial actions.
+- Overdue actions.
+- Pending laboratory results.
+- Upcoming site visits.
+- Active customer sites.
+
+Include charts and filters for assessment period, customer, site, module, status and assigned assessor where relevant.
+
+If no operational data exists, display an honest empty state rather than invented metrics.
+
+## Customer and site management
+
+Provide create, view, edit and archive functionality for customers, sites, facilities and authorised contacts.
+
+## Assessment management
+
+Allow authorised users to:
+
+- View submitted inspections.
+- Filter by company, site, assessor, date and module.
+- Review answers and remarks.
+- Open photographs and attachments.
+- Inspect signature records.
+- Add professional review comments.
+- Return assessments for correction.
+- Approve eligible assessments.
+- View previous versions and audit history.
+
+## Checklist template management
+
+Provide an administration interface for authorised users to:
+
+- Configure checklist sections.
+- Add or edit questions.
+- Configure response types.
+- Mark questions as mandatory.
+- Configure conditional remarks or evidence requirements.
+- Publish new template versions.
+- Preserve previously completed assessments against their original versions.
+
+Changes to a template must not alter previously submitted historical records.
+
+## Document management
+
+Allow secure upload, retrieval and versioning of cleaning procedures, SDS files, relevant certificates, laboratory documents and assessment reports.
+
+Use private object storage and expiring authorised download links where appropriate.
+
+# 14. REPORT GENERATION
+
+Create a reporting engine that generates professional WORKFORCE HEALTH SA-branded reports.
+
+Required formats:
+
+- PDF.
+- Microsoft Word (.docx).
+- Print-friendly web view.
+
+For the Ablution Facilities Checklist report, include:
+
+1. Company and site information.
+2. Facility type and inspection details.
+3. Assessment reference number.
+4. Assessor details.
+5. Checklist sections and questions.
+6. Yes / No responses.
+7. Remarks.
+8. Linked photographs and captions.
+9. Chemical registers.
+10. SDS documentation status.
+11. Procedure documentation status.
+12. Outstanding findings.
+13. Corrective actions and responsible parties.
+14. Signatures and approval details.
+15. Review history, where applicable.
+
+The generated report should retain the organisation and structure of the supplied checklist where practical, while improving readability and pagination.
+
+Use clear page breaks and repeat table headers where appropriate. Prevent questions, remarks and chemical tables from being clipped or split in an unreadable manner.
+
+Provide report preview before finalisation.
+
+A draft report must be clearly marked Draft. Only authorised users may issue a final approved report.
+
+Store generated report files and link each version to the underlying assessment and approval record.
+
+Also design the platform to support Part 1 and Part 2 assessment reporting where applicable, with laboratory results and professional evaluation added through the appropriate workflow.
+
+# 15. REMEDIAL ACTIONS AND NOTIFICATIONS
+
+Create a shared remedial-action management system.
+
+Each action must include:
+
+- Unique action reference.
+- Source assessment and finding.
+- Customer, site and facility.
+- Assigned responsible person.
+- Priority.
+- Target date.
+- Status.
+- Comments and supporting attachments.
+- Completion evidence.
+- Verification outcome.
+
+Notify authorised users when:
+
+- An assessment is submitted.
+- A report is returned for correction.
+- An assessment is approved.
+- A remedial action is assigned.
+- A remedial action is overdue.
+- Laboratory results are received.
+- An assessment is scheduled or approaching.
+
+Implement in-app notifications first. Additional email or push notifications may be integrated through configured services.
+
+Do not claim that an email, push notification or external message was delivered unless the relevant service confirms the outcome.
+
+# 16. LABORATORY AND EQUIPMENT REGISTERS
+
+Provide a laboratory workflow capable of handling supported sample types.
+
+Suggested workflow:
+
+1. Create a sample record.
+2. Generate a unique sample reference or QR code.
+3. Record collection and chain-of-custody details where applicable.
+4. Record dispatch and receipt.
+5. Upload laboratory results.
+6. Link the result to the correct assessment.
+7. Notify authorised reviewers.
+8. Allow professional evaluation and report updates.
+9. Preserve the original result and all revisions.
+
+Do not generate laboratory results or infer missing values.
+
+The equipment register should support equipment name, manufacturer, model, serial number, asset identifier, calibration date, calibration expiry date, certificate attachments and status.
+
+Warn users when equipment requires calibration review. Do not automatically declare a measurement invalid solely from a missing field; apply the configured review rules.
+
+# 17. AI ASSISTANT
+
+Implement an optional Gemini-powered assistant for authorised users.
+
+The assistant may:
+
+- Summarise recorded assessment findings.
+- Find outstanding remedial actions.
+- Locate previous assessments for a selected site.
+- Draft a report summary from recorded evidence.
+- Identify unanswered checklist items.
+- Explain configured workflow procedures.
+- Help users locate authorised records.
+
+AI output must remain grounded in records the current user is authorised to access.
+
+The assistant must never invent:
+
+- Measurement readings.
+- Laboratory results.
+- Inspection answers.
+- Photographic evidence.
+- Signatures.
+- Equipment calibration status.
+- Regulatory requirements.
+- Professional approval decisions.
+
+Clearly label AI-generated content as a draft. Require human review before it becomes part of an approved report.
+
+Do not expose confidential assessment records to external AI services without the required organisational approval, data protection controls and appropriate service configuration.
+
+# 18. SECURITY, PRIVACY AND AUDITABILITY
+
+Implement security throughout the system:
+
+- Secure authentication.
+- Backend-enforced role-based access.
+- Row-level database access policies where supported.
+- Tenant and customer data separation.
+- HTTPS/TLS communication.
+- Private file storage.
+- Secure session handling.
+- Input validation.
+- Rate limiting and abuse protection.
+- Server-side secret management.
+- Audit logging.
+- Backup and recovery procedures.
+- Data retention and deletion policies.
+- Controlled access to reports and attachments.
+
+Maintain a traceable history of assessment creation, editing, submission, review, approval, report generation and remedial-action closure.
+
+Record meaningful changes without exposing credentials or unnecessary sensitive data in logs.
+
+Design for applicable South African privacy and information-security requirements, including POPIA where applicable. Do not represent the application as legally certified or compliant until the necessary assessment has been completed.
+
+# 19. BUILD PHASES
+
+Build incrementally. Complete and test each phase before expanding into the next.
+
+**Phase 1 — UI/UX and project foundation**
+
+- Branding and design system.
+- Navigation.
+- Login screens.
+- Android and web layouts.
+- Reusable form components.
+
+**Phase 2 — Cloud backend**
+
+- Database schema and migrations.
+- Authentication.
+- User roles and permissions.
+- Customer, site and facility registers.
+- API integration.
+
+**Phase 3 — Ablution Facilities module**
+
+- Complete male checklist.
+- All six inspection sections plus Other.
+- Required responses and remarks.
+- Photos and evidence.
+- Chemical registers and SDS attachments.
+- Draft saving and validation.
+
+**Phase 4 — Offline field application**
+
+- Room persistence.
+- Offline customer and site access.
+- Pending uploads.
+- Synchronisation queue.
+- Conflict handling and retry.
+
+**Phase 5 — Web portal**
+
+- Customer and site administration.
+- User assignment.
+- Assessment review.
+- Template management.
+- Remedial-action tracking.
+
+**Phase 6 — Signatures and reporting**
+
+- Signature capture.
+- PDF and Word generation.
+- Document storage.
+- Report review and approval.
+
+**Phase 7 — Additional assessment modules**
+
+- Implement the remaining occupational hygiene modules individually.
+- Validate each module with its relevant users and source documents.
+
+**Phase 8 — Laboratory and equipment workflows**
+
+- Sample register.
+- Laboratory-result workflow.
+- Equipment and calibration register.
+
+**Phase 9 — AI assistant and analytics**
+
+- Permission-aware AI access.
+- Draft summaries.
+- Management dashboards.
+- Trend reporting based on verified records.
+
+**Phase 10 — Testing and deployment**
+
+- Android build and installation testing.
+- Web deployment.
+- Backend deployment.
+- Security testing.
+- Offline and synchronisation testing.
+- Backup and recovery verification.
+- Production configuration and documentation.
+
+# 20. TESTING AND ACCEPTANCE CRITERIA
+
+Do not mark a phase complete merely because the screens render.
+
+For the initial module, verify that:
+
+1. An authorised assessor can log in.
+2. The assessor can select a company, site and male facility.
+3. The application loads the correct checklist template.
+4. All questions in the supplied checklist are present and correctly numbered.
+5. Yes/No answers and remarks persist after navigating away.
+6. Unanswered mandatory items are clearly identified.
+7. Photographs can be attached to individual questions.
+8. Signatures can be captured and linked to the correct assessment.
+9. Deep-cleaning and routine-cleaning chemical lists remain separate.
+10. SDS and procedure-document statuses are recorded correctly.
+11. The assessor can save and reopen a draft.
+12. The assessment remains usable without internet access.
+13. Queued changes synchronise without duplicate records.
+14. The web portal displays the synchronised assessment.
+15. An authorised reviewer can return or approve an assessment.
+16. Unauthorised users cannot access restricted records or approve assessments.
+17. PDF and Word reports preserve all checklist answers, remarks and supporting evidence.
+18. Approved records retain their history.
+19. A failed upload does not result in lost local data.
+20. Empty dashboards do not display fabricated operational statistics.
+
+Create automated tests for business logic and API permissions where practical, alongside manual tests on real Android devices and desktop browsers.
+
+# 21. REQUIRED DELIVERABLES
+
+Produce the following implementation artefacts:
+
+- Complete Android application source code.
+- Complete web portal source code.
+- Cloud backend schema and migration files.
+- Authentication and authorisation implementation.
+- API definitions and integration code.
+- Offline storage and synchronisation implementation.
+- Photo and signature capture implementation.
+- Checklist template and seed data for the supplied male checklist.
+- PDF and Word report-generation functionality.
+- Automated tests and manual testing instructions.
+- Environment-variable example file without real secrets.
+- Deployment instructions for the backend and web portal.
+- Android build and installation instructions.
+- Database backup and recovery instructions.
+- Technical documentation and user guides.
+
+Clearly identify any feature that is still a placeholder, depends on external credentials or has not been tested.
+
+Do not claim that production deployment, external integrations or live synchronisation are operational until they have actually been configured and verified.
+
+# 22. HOW TO WORK IN GOOGLE AI STUDIO
+
+Start by examining the available project files and identifying which files, services and dependencies already exist.
+
+Do not unnecessarily replace functioning code.
+
+First implement the project structure, design system, database model and authentication foundation. Then build the complete Ablution Facilities Checklist module as the first end-to-end feature.
+
+Use reusable components, typed models, clear separation of concerns and maintainable code. Do not put the entire application into one oversized component or a single hard-coded form.
+
+When a requested feature requires backend configuration or deployment beyond the current environment, explain the limitation and provide the exact setup steps.
+
+After each phase:
+
+- Summarise the files and functionality implemented.
+- Identify database changes.
+- List configuration required.
+- Report tests performed and their actual results.
+- Identify outstanding issues.
+- State the next implementation phase.
+
